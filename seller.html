@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Skladon — приложение продавца</title>
+</head>
+<body>
+  <main class="main seller-app">
+    <div class="topbar">
+      <div><h1>Касса продавца</h1><span class="muted">Товары и цены доступны только для просмотра</span></div>
+      <a class="btn secondary" href="index.html">Панель владельца</a>
+    </div>
+    <div class="panel">
+      <div class="toolbar">
+        <input id="seller-search" class="search" placeholder="Поиск товара..." oninput="drawProducts()">
+        <button class="btn" onclick="openSale()">＋ Новая продажа</button>
+      </div>
+      <div class="toolbar">
+        <select id="seller-category" class="search" onchange="updateTypes()"><option value="">Все категории</option></select>
+        <select id="seller-type" class="search" onchange="updateModels()" disabled><option value="">Все виды товаров</option></select>
+        <select id="seller-model" class="search" onchange="drawProducts()" disabled><option value="">Все модели</option></select>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Товар</th><th>Цена</th><th>Остаток</th></tr></thead><tbody id="seller-products"></tbody></table></div>
+    </div>
+    <div class="panel" style="margin-top:18px">
+      <div class="toolbar">
+        <div><h2>Отчёт продавца</h2><span class="muted">Продажи по дням, выручка и доход</span></div>
+        <button class="btn secondary" onclick="drawReport()">Обновить отчёт</button>
+      </div>
+      <div id="seller-summary" class="cards"></div>
+      <div class="table-wrap" style="margin-top:16px"><table><thead><tr><th>Дата</th><th>Продаж</th><th>Выручка</th><th>Доход</th></tr></thead><tbody id="seller-report"></tbody></table></div>
+    </div>
+    <div class="panel" style="margin-top:18px">
+      <h2>Возврат товара</h2>
+      <p class="muted">Выберите продажу, по которой клиент возвращает товар.</p>
+      <div class="table-wrap"><table><thead><tr><th>Номер</th><th>Дата</th><th>Товары</th><th>Сумма</th><th></th></tr></thead><tbody id="seller-sales"></tbody></table></div>
+    </div>
+    <div class="panel" style="margin-top:18px">
+      <div class="toolbar">
+        <div><h2>Напоминания по долгам</h2><span class="muted">Ближайшие и просроченные возвраты</span></div>
+        <span id="debt-notification" class="badge warn"></span>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Должник</th><th>Телефон</th><th>Адрес</th><th>Сумма</th><th>Вернуть до</th><th>Статус</th></tr></thead><tbody id="seller-debts"></tbody></table></div>
+    </div>
+    <div id="seller-toast" class="toast" style="display:none"></div>
+  </main>
+  <script src="seller.js"></script>
+</body>
+</html>
